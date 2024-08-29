@@ -1,16 +1,29 @@
+import "./Body.css";
+import { useState } from "react";
+
+function Viewer() {
+    console.log("viewer component update!");
+    return <div>Viewer</div>
+}
+
 function Body() {
-    function handleOnClick(e) {
-        console.log(e);
-        console.log(e.target.name);
-    }
+    const [number, setNumber] = useState(0);
+    const onIncrease = () => {
+        setNumber(number + 1);
+    };
+    const onDecrease = () => {
+        setNumber(number - 1);
+    };
+    
     return(
-        <div className="body">
-            <button name="A버튼" onClick={handleOnClick}>
-                A버튼
-            </button>
-            <button name="B버튼" onClick={handleOnClick}>
-                B버튼
-            </button>
+        <div>
+            <h2>{number}</h2>
+            <Viewer/>
+
+            <div>
+                <button onClick={onDecrease}>-</button>
+                <button onClick={onIncrease}>+</button>
+            </div>
         </div>
     );
 }
