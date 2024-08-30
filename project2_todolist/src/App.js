@@ -2,7 +2,7 @@ import './App.css';
 import Header from './components/Header';
 import TodoEditor from './components/TodoEditor';
 import TodoList from './components/TodoList';
-import { useReducer, useRef } from 'react';
+import { useCallback, useReducer, useRef } from 'react';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -63,19 +63,19 @@ function App() {
     idRef.current += 1;
   };
 
-  const onUpdate = (targetId) => {
+  const onUpdate = useCallback((targetId) => {
     dispatch({
       type: "UPDATE",
       targetId,
     });
-  };
+  }, []);
 
-  const onDelete = (targetId) => {
+  const onDelete = useCallback((targetId) => {
     dispatch({
       type: "DELETE",
       targetId,
     });
-  };
+  }, []);
 
   return (
     <div className="App">
